@@ -1,0 +1,5 @@
+{
+  "name": "datos-abiertos",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2025-01-01"
+}

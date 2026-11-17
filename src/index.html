@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Extrae tablas públicas de sitios web, archivos CSV y APIs JSON y descárgalas en Excel.">
+<title>Datos Abiertos · Extractor de datos</title>
+<style>
+:root{color-scheme:light;--ink:#102626;--muted:#556962;--line:#dce5df;--green:#076b51;--soft:#e5f2eb;--white:#fff;--bg:#f5f7f3}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "DM Sans",system-ui,sans-serif}button,input,select{font:inherit}button,select{cursor:pointer}button:disabled{opacity:.5;cursor:default}a{color:var(--green)}[hidden]{display:none!important}:focus-visible{outline:3px solid #419782;outline-offset:3px}.wrap{max-width:1130px;margin:auto;padding:0 26px}header{background:#fbfcfa;border-bottom:1px solid var(--line)}.bar{height:65px;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.03em;font-size:19px}.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--green);color:white}.mark svg{width:20px}.tag,.pill,.eyebrow{font-size:11px;letter-spacing:.09em;font-weight:800}.tag{color:var(--green);padding:5px 10px;background:var(--soft);border-radius:5px}.hero{background:#102f2b;color:white;overflow:hidden;position:relative}.hero .wrap{position:relative;padding-top:46px;padding-bottom:48px}.hero h1{font-size:clamp(36px,6vw,65px);line-height:1.02;letter-spacing:-.065em;margin:12px 0 14px;max-width:620px}.hero p{margin:0;color:#c5dad0;max-width:535px;font-size:16px}.eyebrow{color:#95dabb}.grid-art{position:absolute;width:350px;height:250px;right:12px;top:9px;background:repeating-linear-gradient(0deg,transparent 0 26px,#a0dfbd36 27px 28px),repeating-linear-gradient(90deg,transparent 0 42px,#a0dfbd36 43px 44px);mask-image:linear-gradient(110deg,transparent,black);transform:skewY(-10deg);pointer-events:none}.grid-art i{position:absolute;display:block;background:#73ce9e57;width:42px;height:26px}.grid-art i:nth-child(1){top:56px;left:130px}.grid-art i:nth-child(2){top:84px;left:174px}.grid-art i:nth-child(3){top:28px;left:262px}.grid-art i:nth-child(4){top:140px;left:218px}.grid-art i:nth-child(5){top:112px;left:306px}.main{padding-top:26px;padding-bottom:40px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:24px;margin-bottom:18px;box-shadow:0 3px 10px #10262605}.title{margin:0 0 4px;font-size:23px;letter-spacing:-.04em}.desc{color:var(--muted);margin:0 0 17px}.formline,.toolbar,.examples,.tabletop,.pager{display:flex;align-items:center;gap:10px}.formline input{flex:1;min-width:0}.field{font-weight:700;display:block;margin-bottom:6px}input:not([type=checkbox]),select{border:1px solid #cdd9d2;border-radius:8px;padding:10px 12px;background:white;color:var(--ink);min-width:0}.primary,.secondary,.chip{border-radius:8px;padding:10px 14px;font-weight:750;border:1px solid transparent}.primary{background:var(--green);color:white}.primary:hover{background:#05553f}.secondary{background:white;border-color:#cdd9d2;color:var(--ink)}.chip{background:#f2f7f3;color:var(--green);border-color:#dcebe1;padding:4px 9px;font-size:12px}.examples{margin-top:13px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.pill{background:var(--soft);padding:3px 8px;border-radius:5px;color:var(--green)}.options{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.8fr) minmax(0,.8fr);gap:13px;margin:18px 0}.options select,.options input{width:100%}.toolbar,.tabletop,.pager{justify-content:space-between;flex-wrap:wrap}.actions{display:flex;flex-wrap:wrap;gap:8px}.column-box{margin:12px 0;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:12px 15px}.column-box summary{font-weight:700;cursor:pointer}.columns{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:10px}.columns label{overflow-wrap:anywhere}.tableview{overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:14px}table{width:100%;border-collapse:collapse;text-align:left}th,td{padding:11px 13px;border-bottom:1px solid var(--line);max-width:360px;overflow-wrap:anywhere;vertical-align:top}th{background:#eef4ee;color:#28423a;min-width:105px}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#fafcf9}.pager{margin-top:14px;color:var(--muted);font-size:13px}.status{margin:12px 0 0;color:var(--muted)}.status.error{color:#a12a23}.empty{padding:32px 15px;text-align:center;border:1px dashed #cbdad1;border-radius:10px;color:var(--muted)}.empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:3px}footer{color:var(--muted);font-size:13px;padding:3px 0 28px}.source{overflow-wrap:anywhere}@media(max-width:650px){.wrap{padding-left:15px;padding-right:15px}.hero .wrap{padding-top:38px;padding-bottom:39px}.hero p{max-width:85%}.grid-art{opacity:.38;right:-130px}.card{padding:16px}.options{grid-template-columns:repeat(2,minmax(0,1fr))}.formline{align-items:stretch;flex-direction:column}}
+</style></head>
+<body><header><div class="wrap bar"><div class="brand"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11m6-11v11M3 14.5h18"/></svg></span>Datos Abiertos</div><span class="tag">HTML · CSV · JSON</span></div></header>
+<section class="hero"><div class="wrap"><div class="grid-art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span class="eyebrow">EXTRACTOR DE DATOS</span><h1>De la web a Excel</h1><p>Convierte tablas y listas públicas en una planilla con las filas y columnas que necesitas.</p></div></section>
+<main class="wrap main">
+<section class="card" aria-labelledby="source-title"><h2 class="title" id="source-title">Fuente de datos</h2><p class="desc">Pega el enlace de una página con tablas, un archivo CSV o una API JSON pública.</p><form id="form"><label class="field" for="url">Enlace público</label><div class="formline"><input id="url" type="url" maxlength="2048" placeholder="https://ejemplo.cl/datos" required><button class="primary" id="extract">Extraer datos</button></div></form><div class="examples"><span>Probar con</span><button class="chip" id="example-html">Regiones de Chile · HTML</button><button class="chip" id="example-json">Sismos recientes · JSON</button></div><p id="status" class="status" role="status" aria-live="polite" hidden></p></section>
+<section class="card" aria-labelledby="results-title"><div class="tabletop"><h2 class="title" id="results-title">Vista previa</h2><span class="pill" id="format" hidden></span></div><div class="empty" id="empty"><strong>Aún no hay datos</strong>Extrae una fuente para ver su contenido aquí.</div>
+<div id="results" hidden><p class="desc source"><a id="source-link" target="_blank" rel="noopener noreferrer"></a></p><div class="options"><label><span class="field">Tabla o lista</span><select id="sheet"></select></label><label><span class="field">Filtrar filas</span><input id="filter" type="search" placeholder="Buscar texto"></label><label><span class="field">Ordenar por</span><select id="sort"></select></label><label><span class="field">Dirección</span><select id="direction"><option value="1">Ascendente</option><option value="-1">Descendente</option></select></label></div>
+<details class="column-box"><summary>Columnas para la vista y la exportación</summary><div class="columns" id="columns"></div></details><div class="toolbar"><span id="count" role="status"></span><div class="actions"><button class="secondary" id="csv">Descargar CSV</button><button class="primary" id="xlsx">Descargar Excel</button></div></div><div class="tableview"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><div class="pager"><span id="page"></span><div class="actions"><button class="secondary" id="prev">Anterior</button><button class="secondary" id="next">Siguiente</button></div></div></div></section>
+<footer>Admite hasta 4 MB por consulta y hasta 10.000 filas y 100 columnas por tabla. La fuente se incluye como referencia en el archivo Excel.</footer>
+</main><script src="/xlsx.js" defer></script>
+<script>
+const el = id => document.getElementById(id);
+const pageSize = 20;
+const collator = new Intl.Collator('es', { numeric: true, sensitivity: 'base' });
+let dataset, table, visible = [], filtered = [], page = 0;
+function option(label, value) { return new Option(label, value); }
+function status(message, error = false) {
+  el('status').hidden = !message;
+  el('status').textContent = message;
+  el('status').classList.toggle('error', error);
+}
+async function collect(event) {
+  event.preventDefault();
+  el('extract').disabled = true;
+  el('example-html').disabled = true;
+  el('example-json').disabled = true;
+  status('Consultando la fuente…');
+  try {
+    const response = await fetch('/api/extract', { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ url: el('url').value.trim() }) });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    dataset = data;
+    el('format').textContent = data.format;
+    el('source-link').href = data.source;
+    el('source-link').textContent = 'Ver fuente · ' + new URL(data.source).hostname;
+    el('sheet').replaceChildren(...data.tables.map((item, i) => option(item.name, i)));
+    selectTable();
+    el('results').hidden = el('format').hidden = false;
+    el('empty').hidden = true;
+    status(data.tables.length === 1 ? 'Se encontró 1 tabla.' : 'Se encontraron ' + data.tables.length + ' tablas.');
+  } catch (error) {
+    status((error.message || 'Ocurrió un error al consultar la fuente.') + (dataset ? ' La vista previa conserva la consulta anterior.' : ''), true);
+  } finally {
+    el('extract').disabled = el('example-html').disabled = el('example-json').disabled = false;
+  }
+}
+function selectTable() {
+  table = dataset.tables[Number(el('sheet').value)];
+  el('filter').value = '';
+  el('direction').value = '1';
+  el('sort').replaceChildren(option('Orden original', ''), ...table.headers.map((name, i) => option(name, i)));
+  el('columns').replaceChildren(...table.headers.map((name, i) => {
+    const label = document.createElement('label');
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+    check.checked = true;
+    check.value = i;
+    check.addEventListener('change', () => {
+      if (!el('columns').querySelector(':checked')) {
+        check.checked = true;
+        status('Selecciona al menos una columna.');
+      }
+      refresh();
+    });
+    label.append(check, ' ' + name);
+    return label;
+  }));
+  refresh();
+}
+const fold = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('es');
+function numberValue(value) {
+  const text = String(value ?? '').trim();
+  return /^[+-]?\d+(?:[.,]\d+)?$/.test(text) ? Number(text.replace(',', '.')) : NaN;
+}
+function refresh() {
+  visible = [...el('columns').querySelectorAll(':checked')].map(input => Number(input.value));
+  const term = fold(el('filter').value.trim());
+  filtered = table.rows.filter(row => !term || visible.some(i => fold(row[i]).includes(term)));
+  if (el('sort').value !== '') {
+    const col = Number(el('sort').value);
+    const dir = Number(el('direction').value);
+    filtered.sort((first, second) => {
+      const a = first[col] ?? '', b = second[col] ?? '';
+      if (a === '' || b === '') return Number(a === '') - Number(b === '');
+      const an = numberValue(a), bn = numberValue(b);
+      return dir * (Number.isFinite(an) && Number.isFinite(bn) ? an - bn : collator.compare(a, b));
+    });
+  }
+  page = 0;
+  render();
+}
+function rowNode(row, tag) {
+  const tr = document.createElement('tr');
+  for (const value of row) {
+    const cell = document.createElement(tag);
+    if (tag === 'th') cell.scope = 'col';
+    cell.textContent = value ?? '';
+    tr.append(cell);
+  }
+  return tr;
+}
+function render() {
+  const start = page * pageSize;
+  const end = Math.min(filtered.length, start + pageSize);
+  el('head').replaceChildren(rowNode(visible.map(i => table.headers[i]), 'th'));
+  el('body').replaceChildren(...filtered.slice(start, end).map(row => rowNode(visible.map(i => row[i]), 'td')));
+  if (!filtered.length) {
+    const empty = rowNode(['No hay filas que coincidan con el filtro.'], 'td');
+    empty.firstChild.colSpan = visible.length;
+    el('body').append(empty);
+  }
+  el('count').textContent = filtered.length.toLocaleString('es-CL') + ' de ' + table.total.toLocaleString('es-CL') + ' filas';
+  el('page').textContent = filtered.length ? 'Filas ' + (start + 1) + '–' + end + ' de ' + filtered.length : 'Sin filas para mostrar';
+  el('prev').disabled = page === 0;
+  el('next').disabled = end >= filtered.length;
+  el('csv').disabled = el('xlsx').disabled = !filtered.length;
+}
+function outputRows() {
+  return [visible.map(i => table.headers[i]), ...filtered.map(row => visible.map(i => row[i] ?? ''))];
+}
+el('form').addEventListener('submit', collect);
+el('sheet').addEventListener('change', selectTable);
+el('filter').addEventListener('input', refresh);
+for (const id of ['sort', 'direction']) el(id).addEventListener('change', refresh);
+el('prev').addEventListener('click', () => { page--; render(); });
+el('next').addEventListener('click', () => { page++; render(); });
+el('xlsx').addEventListener('click', () => {
+  try {
+    const rows = outputRows();
+    for (const row of rows.slice(1)) {
+      for (let i = 0; i < row.length; i++) {
+        if (typeof row[i] === 'string' && /^[+-]?(?:0|[1-9]\d*)(?:[.,]\d+)?$/.test(row[i]) &&
+          row[i].replace(/\D/g, '').length <= 15 && Number.isFinite(numberValue(row[i]))) row[i] = numberValue(row[i]);
+      }
+    }
+    const book = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(rows), 'Datos');
+    XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([
+      ['Fuente', dataset.source], ['Formato', dataset.format], ['Tabla', table.name], ['Filas exportadas', filtered.length],
+    ]), 'Fuente');
+    XLSX.writeFile(book, 'datos-abiertos.xlsx');
+  } catch { status('No se pudo generar el archivo Excel.', true); }
+});
+el('csv').addEventListener('click', () => {
+  const csv = outputRows().map(row => row.map(value => {
+    let text = String(value ?? '');
+    if (typeof value === 'string' && !Number.isFinite(numberValue(text)) && /^[\s\u0000-\u001f]*[=+\-@]/.test(text)) text = "'" + text;
+    return '"' + text.replace(/"/g, '""') + '"';
+  }).join(';')).join('\r\n');
+  const href = URL.createObjectURL(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8' }));
+  const link = document.createElement('a');
+  link.href = href;
+  link.download = 'datos-abiertos.csv';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(href), 1000);
+});
+const examples = {
+  'example-html': 'https://es.wikipedia.org/wiki/Regiones_de_Chile',
+  'example-json': 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson',
+};
+for (const [id, url] of Object.entries(examples)) el(id).onclick = () => {
+  el('url').value = url;
+  el('form').requestSubmit();
+};
+</script></body></html>
